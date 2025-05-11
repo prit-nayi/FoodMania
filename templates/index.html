@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Mania</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <div class="wrap-container">
+        <header>
+            <div class="container">
+                <nav>
+                    <div class="logo">Food-Mania</div>
+                    <ul>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'aboutus' %}">About Us</a></li>
+                        <li><a href="{% url 'cart_detail' %}">Cart</a></li>
+                        <li><a href="{% url 'profile' %}">Profile</a></li>
+                    </ul>
+                </nav>
+                <div class="header-content">
+                    <h1>Your favorite food, delivered fast!</h1>
+                    <p>Order now and enjoy delicious meals at the comfort of your home.</p>
+                </div>
+            </div>
+        </header>
+    </div>
+    
+    <main>
+        <div class="container">
+            <section class="popular-foods">
+                <h2 class="title-text">Popular Restaurant </h2>
+                <br>
+                <div class="food-items-wrapper">
+                    <div class="food-list">
+                        {% for res in pop_res %}
+                        <div class="food-item">
+                            <a href="{% url 'restaurant_detail' res.id %}">
+                                <div class="food-image">
+                                    <img src="{{ res.rest_image.url }}" alt="{{ res.name }}">
+                                </div>
+                            </a>
+                            <div class="food-desc">
+                                <h3 class="food-name"><big>{{ res.name}}</big></h3>
+                                <h2> open : {{ res.opening_time}} | close : {{ res.closing_time }}</h2>
+                                <p><b>{{ res.address }}</b></p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                       
+                    </div>
+                </div>
+            </section>
+            
+            <h2 class="title-text">All Restaurants</h2>
+          
+
+            <section class="restaurants">
+                <div class="grid-items-wrapper">
+                    <div class="grid-container">
+                        {% for restaurant in restaurants %}
+                        
+                        <a href="{% url 'restaurant_detail' restaurant.id %}" style="text-decoration: none;">
+                        <div class="grid-item">
+                            <img src="{{ restaurant.rest_image.url }}" alt="{{ restaurant.name }}">
+                                <h2>{{ restaurant.name }}</h2>
+                                <h3 class="open-close"> open : {{ restaurant.opening_time}} |
+                                   close : {{ restaurant.closing_time }}</h3>
+                                <p>{{ restaurant.address }}</p>
+                        </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer">
+            <p>&copy; 2025 Food Mania. All rights reserved. </p>
+        </div>
+    </footer>
+</body>
+
+</html>

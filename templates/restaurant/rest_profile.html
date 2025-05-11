@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Profile</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'restaurant/rest_profile.css' %}">
+</head>
+
+<body>
+    <div class="wrap-container">
+        <header>
+            <div class="nav-container">
+                <nav>
+                    <div class="logo">Food-Mania</div>
+                    <ul>
+                        <li><a href="{% url 'dashboard' %}">Home</a></li>
+                        <li><a href="{% url 'restaurant_orders'  %}">Orders</a></li>
+                        <li><a href="{% url 'menu' %}">Menu</a></li>
+                        <li><a href="{% url 'rest_profile' %}">Profile</a></li>
+
+                    </ul>
+                </nav>
+                <div class="header-content">
+                    <h1 class="moto">Your favorite food, delivered fast!</h1>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="container">
+        <div class="restaurant-profile">
+            <h1>{{ restaurant.name }}</h1>
+            <p>{{ restaurant.description }}</p>
+            <p><strong>Address:</strong> {{ restaurant.address }}</p>
+            <p><strong>Phone:</strong> {{ restaurant.contact }}</p>
+            <p><strong>Email:</strong> {{ restaurant.email }}</p>
+            <p><strong>Opening Hours:</strong> {{ restaurant.opening_time }}</p>
+            <p><strong>Closing Hours:</strong> {{ restaurant.closing_time }}</p>
+        </div>
+        <div class="menu">
+            <h2>Menu</h2>
+            <ul>
+                {% for item in menu %}
+                <li>{{ item.menu_name }} </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <form action="{% url 'rest_logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit"
+                    style="padding: 10px 20px; background-color: #dc3545; color: #ffffff; border: none; border-radius: 5px; cursor: pointer;">Logout</button>
+            </form>
+        </div>
+        </form>
+    </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 Food Mania. All rights reserved. </p>
+    </div>
+</body>
+
+</html>

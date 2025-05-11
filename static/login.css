@@ -1,0 +1,94 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url(/static/images/image1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(234, 232, 232, 0.1);
+    width: 100%;
+    max-width: 400px;
+    transition: transform 0.3s ease;
+}
+
+
+.login-label {
+    color: white;
+    font-size: 2.2rem;
+    margin: 0 0 12px 0;
+    text-align: center;
+    font-weight: 800;
+}
+
+.login-form h2 {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';
+    font-size: xx-large;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #ff416c;
+
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: whitesmoke;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 93%;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.form-group textarea {
+
+    border: 2px solid #ddd;
+    width: 93%;
+    padding: 0.75rem;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    background-color: #fff;
+    border-color: #ff416c;
+    box-shadow: 0 0 5px rgba(255, 65, 108, 0.5);
+}
+
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff416c;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #ff4b2b;
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'restaurant/register.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="left">
+            <div class="progress-bar">
+                <div class="progress-option" id="option1" onclick="showForm(1)">
+                    Restaurant Details
+                </div>
+                <div class="progress-option" id="option2" onclick="showForm(2)">
+                    Owner Details
+                </div>
+                <div class="progress-option" id="option3" onclick="showForm(3)">
+                    Bank Details
+                </div>
+                <div class="progress-option" id="option4" onclick="showForm(4)">
+                    Create Account
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="forms-container">
+                <!-- Single Form for All Steps -->
+                <form id="multiStepForm" method="post" action="{% url 'rest_login' %}">
+                    {% csrf_token %}
+
+                    <!-- Form 1 - Restaurant Details -->
+                    <div class="form" id="form1">
+                        <h1>Restaurant Details</h1>
+                        <br />
+                        <label for="type">Restaurant Name:</label>
+                        <input type="text" id="type" name="restaurant_name" required />
+
+                        <label for="email">Restaurant Email:</label>
+                        <input type="email" id="restaurantEmail" name="email" required />
+
+                        <label for="address">Restaurant Address:</label>
+                        <input type="text" id="address" name="address" required />
+
+                        <label for="phone">Restaurant Contact:</label>
+                        <input type="tel" id="restaurantPhone" name="contact" required />
+
+                        <label for="restaurantimage">Restaurant Image:</label>
+                        <input type="file" id="restaurantimage" name="rimage" required />
+
+                        <label for="opentimes">Opening Times:</label>
+                        <input type="time" id="opentimes" name="opentimes" required />
+
+                        <label for="closetimes">Closing Times:</label>
+                        <input type="time" id="closetimes" name="closetimes" required />
+
+                        <label for="gst">GST Number:</label>
+                        <input type="text" id="gst" name="gst" required />
+
+                        <label for="fssai">FSSAI Number:</label>
+                        <input type="text" id="fssai" name="fssai" required />
+
+                        <div class="wrap-btn">
+                            <button type="button" class="next-btn" onclick="showForm(2)">
+                                Next
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Form 2 - Owner Details -->
+                    <div class="form" id="form2">
+                        <h2>Owner Details</h2>
+                        <label for="name">Owner Name:</label>
+                        <input type="text" id="ownerName" name="owner_name" required />
+
+                        <label for="phone">Owner Phone:</label>
+                        <input type="tel" id="ownerPhone" name="owner_phone" required />
+
+                        <label for="email">Owner Email:</label>
+                        <input type="email" id="ownerEmail" name="owner_email" required />
+
+                        <label for="pan">PAN Number:</label>
+                        <input type="text" id="pan" name="pan" required />
+
+                        <div class="wrap-btn">
+                            <button type="button" class="prev-btn" onclick="showForm(1)">
+                                Previous
+                            </button>
+                            <button type="button" class="next-btn" onclick="showForm(3)">
+                                Next
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Form 3 - Bank Details -->
+                    <div class="form" id="form3">
+                        <h2>Bank Details</h2>
+                        <label for="name">Bank Name:</label>
+                        <input type="text" id="bankName" name="bank_name" required />
+
+                        <label for="account">Account Number:</label>
+                        <input type="text" id="account" name="account_number" required />
+
+                        <label for="ifsc">IFSC Code:</label>
+                        <input type="text" id="ifsc" name="ifsc_code" required />
+
+                        <div class="wrap-btn">
+                            <button type="button" class="prev-btn" onclick="showForm(2)">
+                                Previous
+                            </button>
+                            <button type="button" class="next-btn" onclick="showForm(4)">
+                                Next
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Form 4 - Create Account -->
+                    <div class="form" id="form4">
+                        <h2>Create Restaurant Account</h2>
+                        <label for="name">User Name:</label>
+                        <input type="text" id="bankName" name="username" required />
+
+                        <label for="psw">Password:</label>
+                        <input type="password" id="psw" name="password" required />
+
+                        <label for="cpsw">Confirm Password:</label>
+                        <input type="password" id="cpsw" name="conf-password" required oninput="checkPasswordMatch()" />
+
+                        <span id="passwordMessage" style="color:red; font-size: large; font-weight: bold;"></span>
+
+                        <div class="wrap-btn">
+                            <button type="button" class="prev-btn" onclick="showForm(3)">
+                                Previous
+                            </button>
+                            <button type="submit" id="submit-btn" style="width: 250px">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/restaurant/register.js' %}"></script>
+</body>
+
+</html>

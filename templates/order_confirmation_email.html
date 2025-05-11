@@ -1,0 +1,23 @@
+<html>
+
+<body>
+    <h2>Thank you for your order!</h2>
+    <p>Dear {{ customer_name }},</p>
+    <p>We’re excited to prepare your delicious meal! Here are your order details:</p>
+    <ul>
+        <li><strong>Order Number:</strong> {{ order_number }}</li>
+        <li><strong>Items:</strong></li>
+        <ul>
+            {% for item in items %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+        <li><strong>Total Amount:</strong> ₹{{ total_amount }}</li>
+        <li><strong>Delivery Address:</strong> {{ delivery_address }}</li>
+        <li><strong>Estimated Delivery Time:</strong> {{ estimated_time }}</li>
+    </ul>
+    <p>If you have any questions, feel free to contact us at foodmania2025@gmail.com.</p>
+    <p>Bon Appétit,<br>The Foodmania Team</p>
+</body>
+
+</html>

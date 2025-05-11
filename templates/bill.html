@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill - Order #{{ order.oid }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .invoice {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .header p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .details {
+            margin-bottom: 20px;
+        }
+
+        .details table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .details th,
+        .details td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .details th {
+            background-color: #f9f9f9;
+        }
+
+        .items {
+            margin-bottom: 20px;
+        }
+
+        .items table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .items th,
+        .items td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .items th {
+            background-color: #f9f9f9;
+        }
+
+        .total {
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="invoice">
+        <!-- Header -->
+        <div class="header">
+            <h1>Food Mania</h1>
+            <p>Order Invoice</p>
+        </div>
+
+        <!-- Order Details -->
+        <div class="details">
+            <table>
+                <tr>
+                    <th>Order ID</th>
+                    <td>{{ order.oid }}</td>
+                </tr>
+                <tr>
+                    <th>Order Name</th>
+                    <td>{{ order.oname }}</td>
+                </tr>
+                <tr>
+                    <th>Customer Name</th>
+                    <td>{{ order.cus_id.cname }}</td>
+                </tr>
+                <tr>
+                    <th>Restaurant</th>
+                    <td>{{ order.res_id.name }}</td>
+                </tr>
+                <tr>
+                    <th>Booking Date</th>
+                    <td>{{ order.booking_date }}</td>
+                </tr>
+                <tr>
+                    <th>Payment Method</th>
+                    <td>{{ order.payment_method }}</td>
+                </tr>
+                <tr>
+                    <th>Delivery Address</th>
+                    <td>{{ address }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Order Items -->
+        <div class="items">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items_with_totals %}
+                    <tr>
+                        <td>{{ item.food_name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>₹{{ item.food_price }}</td>
+                        <td>₹{{ item.total_price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Total Amount -->
+        <div class="total">
+            <p>Grand Total: ₹{{ order.amount }}</p>
+        </div>
+
+        <!-- Customization -->
+        {% if order.customization %}
+        <div class="customization">
+            <h3>Customization:</h3>
+            <p>{{ order.customization }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

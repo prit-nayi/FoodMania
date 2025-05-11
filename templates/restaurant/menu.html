@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Menu, Category, and Food</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'restaurant/menu.css' %}">
+</head>
+
+<body>
+    <div class="wrap-container">
+        <header>
+            <div class="container">
+                <nav>
+                    <div class="logo">Food-Mania</div>
+                    <ul>
+                        <li><a href="{% url 'dashboard' %}">Home</a></li>
+                        <li><a href="{% url 'restaurant_orders'  %}">Orders</a></li>
+                        <li><a href="{% url 'menu' %}">Menu</a></li>
+                        <li><a href="{% url 'rest_profile' %}">Profile</a></li>
+
+                    </ul>
+                </nav>
+                <div class="header-content">
+                    <h1 class="moto">Your favorite food, delivered fast!</h1>
+                </div>
+            </div>
+        </header>
+    </div>
+    <h1>Add Menu, Category, and Food</h1>
+
+    <form method="post" enctype="multipart/form-data" action="{% url 'menu' %}">
+        {% csrf_token %}
+
+        <div class="form-section">
+            <h2>Add Menu</h2>
+            <div class="form-group">
+                <label for="menu-name">Menu Name:</label>
+                <input type="text" id="menu-name" name="menu-name" required>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Add Category</h2>
+            <div id="categories">
+                <div class="category">
+                    <div class="form-group">
+                        <label for="category-name-1">Category Name:</label>
+                        <input type="text" id="category-name-1" name="category-name" required>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Add Food Items</h3>
+                        <div id="food-items-1">
+                            <div class="food-item">
+                                <div class="form-group">
+                                    <label for="food-name-1-1">Food Name:</label>
+                                    <input type="text" id="food-name-1-1" name="food-name-1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="food-price-1-1">Food Price:</label>
+                                    <input type="number" id="food-price-1-1" name="food-price-1" step="0.01" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="food-type-1-1">Food Type:</label>
+                                    <select id="food-type-1-1" name="food-type-1" required>
+                                        <option value="VEG">Vegetarian</option>
+                                        <option value="NON_VEG">Non-Vegetarian</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="food-image-1-1">Food Image:</label>
+                                    <input type="file" id="food-image-1-1" name="food-image-1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="food-description-1-1">Food Description:</label>
+                                    <textarea id="food-description-1-1" name="food-description-1"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="add-button" onclick="addFoodItem(1)">Add Food Item</button>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="add-button" onclick="addCategory()">Add Category</button>
+        </div>
+
+        <button type="submit" class="submit-button">Submit</button>
+    </form>
+
+    <script>
+        let categoryCount = 1;
+        let foodItemCount = { 1: 1 }; 
+
+        function addCategory() {
+            categoryCount++;
+            foodItemCount[categoryCount] = 1;
+
+            const categoriesDiv = document.getElementById('categories');
+            const newCategory = document.createElement('div');
+            newCategory.className = 'category';
+            newCategory.innerHTML = `
+                <div class="form-group">
+                    <label for="category-name-${categoryCount}">Category Name:</label>
+                    <input type="text" id="category-name-${categoryCount}" name="category-name" required>
+                </div>
+                <div class="form-section">
+                    <h3>Add Food Items</h3>
+                    <div id="food-items-${categoryCount}">
+                        <div class="food-item">
+                            <div class="form-group">
+                                <label for="food-name-${categoryCount}-1">Food Name:</label>
+                                <input type="text" id="food-name-${categoryCount}-1" name="food-name-${categoryCount}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="food-price-${categoryCount}-1">Food Price:</label>
+                                <input type="number" id="food-price-${categoryCount}-1" name="food-price-${categoryCount}" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="food-type-${categoryCount}-1">Food Type:</label>
+                                <select id="food-type-${categoryCount}-1" name="food-type-${categoryCount}" required>
+                                    <option value="VEG">Vegetarian</option>
+                                    <option value="NON_VEG">Non-Vegetarian</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="food-image-${categoryCount}-1">Food Image:</label>
+                                <input type="file" id="food-image-${categoryCount}-1" name="food-image-${categoryCount}">
+                            </div>
+                            <div class="form-group">
+                                <label for="food-description-${categoryCount}-1">Food Description:</label>
+                                <textarea id="food-description-${categoryCount}-1" name="food-description-${categoryCount}"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="add-button" onclick="addFoodItem(${categoryCount})">Add Food Item</button>
+                </div>
+            `;
+            categoriesDiv.appendChild(newCategory);
+        }
+
+        function addFoodItem(categoryId) {
+            foodItemCount[categoryId]++;
+            const foodItemsDiv = document.getElementById(`food-items-${categoryId}`);
+            const newFoodItem = document.createElement('div');
+            newFoodItem.className = 'food-item';
+            newFoodItem.innerHTML = `
+                <div class="form-group">
+                    <label for="food-name-${categoryId}-${foodItemCount[categoryId]}">Food Name:</label>
+                    <input type="text" id="food-name-${categoryId}-${foodItemCount[categoryId]}" name="food-name-${categoryId}" required>
+                </div>
+                <div class="form-group">
+                    <label for="food-price-${categoryId}-${foodItemCount[categoryId]}">Food Price:</label>
+                    <input type="number" id="food-price-${categoryId}-${foodItemCount[categoryId]}" name="food-price-${categoryId}" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="food-type-${categoryId}-${foodItemCount[categoryId]}">Food Type:</label>
+                    <select id="food-type-${categoryId}-${foodItemCount[categoryId]}" name="food-type-${categoryId}" required>
+                        <option value="VEG">Vegetarian</option>
+                        <option value="NON_VEG">Non-Vegetarian</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="food-image-${categoryId}-${foodItemCount[categoryId]}">Food Image:</label>
+                    <input type="file" id="food-image-${categoryId}-${foodItemCount[categoryId]}" name="food-image-${categoryId}">
+                </div>
+                <div class="form-group">
+                    <label for="food-description-${categoryId}-${foodItemCount[categoryId]}">Food Description:</label>
+                    <textarea id="food-description-${categoryId}-${foodItemCount[categoryId]}" name="food-description-${categoryId}"></textarea>
+                </div>
+            `;
+            foodItemsDiv.appendChild(newFoodItem);
+        }
+    </script>
+    <div class="footer">
+        <p>&copy; 2025 Food Mania. All rights reserved. </p>
+    </div>
+</body>
+
+</html>

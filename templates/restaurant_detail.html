@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ restaurant.name }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'restaurant_detail.css' %}">
+</head>
+
+<body>
+    <div class="wrap-container">
+        <header>
+            <div class="nav-container">
+                <nav>
+                    <div class="logo">Food-Mania</div>
+                    <ul>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="{% url 'cart_detail' %}">Cart</a></li>
+                        <li><a href="{% url 'login' %}">Profile</a></li>
+                    </ul>
+                </nav>
+                <div class="header-content">
+                    <h1>Your favorite food, delivered fast!</h1>
+                    <p>Order now and enjoy delicious meals at the comfort of your home.</p>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="header">
+        <h1>{{ restaurant.name }}</h1>
+        <p>{{ restaurant.address }}</p>
+        <button class="cart-button" > <a href="{% url 'cart_detail' %}" style="text-decoration: none; color: white;">Cart </a></button>
+    </div>
+    <div class="container">
+        <img src="{{ restaurant.rest_image.url }}" alt="Restaurant Image"
+            style="width: 300px; height: 250px; display: block; margin: 0 auto;">
+
+        <div class="menu-section">
+            <h2>Menus</h2>
+            <ul>
+                {% for menu in menus %}
+                <li> <span class="menu-name"> {{ menu.menu_name }} </span>
+                    <ul>
+                        {% for food in food_items %}
+                        {% if food.category.menu.id == menu.id %}
+                        <li class="menu-item">
+                            <img src="{{ food.image.url }}" alt="Food Image">
+                            <div>
+                                <h3>{{ food.food_name }}</h3>
+                                <p>{{ food.description }}</p>
+                                <span class="price">₹{{ food.food_price }}</span>
+                                <span class="food-type">
+                                    {% if food.food_type == 'VEG' %}
+                                    <span class="veg"> ( Veg )</span>
+                                    {% else %}
+                                    <span class="nonveg"> ( Non-Veg ) </span>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <form action="{% url 'cart_add' food.id %}" method="POST" class="add-to-cart-form">
+                                {% csrf_token %}
+                                <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+                                <button type="submit" class="add-to-cart">Add to Cart</button>
+                            </form>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 Food Mania. All rights reserved. </p>
+    </div>
+</body>
+
+</html>

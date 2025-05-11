@@ -1,0 +1,177 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: peachpuff;
+}
+
+.food-detail-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.food-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+.food-info {
+    padding: 20px;
+    background-color: antiquewhite;
+}
+
+.food-name {
+    font-size: 2.5rem;
+    margin: 0 0 10px;
+    color: #222;
+}
+
+.food-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin: 0 0 20px;
+}
+
+.food-price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #28a745;
+    margin: 0 0 20px;
+}
+
+.cta-section {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.order-button {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff6f61;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.order-button:hover {
+    background-color: #ff4a3d;
+}
+
+.cta-note {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 10px;
+}
+
+.ingredients-section {
+    margin: 20px 0;
+}
+
+.ingredients-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.ingredients-list {
+    list-style: none;
+    padding: 0;
+}
+
+.ingredients-list li {
+    background: #f8f9fa;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.rating-section {
+    margin: 20px 0;
+}
+
+.rating-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.stars {
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+
+.rating-value {
+    margin-left: 10px;
+    font-size: 1rem;
+    color: #777;
+}
+
+.reviews {
+    margin-top: 10px;
+}
+
+.review {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.review-text {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.review-author {
+    font-size: 0.8rem;
+    color: #777;
+    text-align: right;
+}
+
+.related-food-section {
+    margin: 20px 0;
+}
+
+.related-food-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.related-food-list {
+    display: flex;
+    gap: 10px;
+}
+
+.related-food-item {
+    flex: 1;
+    text-align: center;
+}
+
+.related-food-item img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.related-food-item p {
+    font-size: 0.9rem;
+    margin-top: 5px;
+}

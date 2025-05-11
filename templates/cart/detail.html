@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Your Cart</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'cart_detail.css' %}">
+</head>
+<body>
+    <div class="wrap-container">
+        <header>
+            <div class="nav-container">
+                <nav>
+                    <div class="logo">Food-Mania</div>
+                    <ul>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="{% url 'profile' %}">Profile</a></li>
+                        <li><a href="{% url 'cart_detail' %}">Cart</a></li>
+                    </ul>
+                </nav>
+                <div class="header-content">
+                    <h1>Your favorite food, delivered fast!</h1>
+                    <p>Order now and enjoy delicious meals at the comfort of your home.</p>
+                </div>
+            </div>
+        </header>
+    </div>
+        <div class="container">
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="{{ message.tags }}" style="color: red; font-weight: 700; font-size: 1.3rem;">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        <h1 class="head">Your Cart</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Food</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart %}
+                <tr>
+                    <td>{{ item.food.food_name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>₹{{ item.price }}</td>
+                    <td>₹{{ item.total_price }}</td>
+                    <td>
+                        <form action="{% url 'cart_remove' item.food.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-remove">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="total-row">Total</td>
+                    <td>₹{{ cart.get_total_price }}</td>
+                </tr>
+            </tfoot>
+        </table>
+        <div style="text-align: center;">
+            <a href="javascript:history.back()" class="btn-continue">Continue Shopping</a>
+            <a href="{% url 'payment' %}" class="btn-payment">Proceed to Payment</a>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 Food Mania. All rights reserved. </p>
+    </div>
+</body>
+</html>

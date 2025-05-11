@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ food.name }} - Food Detail</title>
+    <link rel="stylesheet" href="/static/food_detail.css"> 
+</head>
+
+<body>
+    <div class="food-detail-container">
+        <div class="food-image">
+            <img src="{{ food.image.url }}" alt="{{ food.name }}">
+        </div>
+
+        <div class="food-info">
+            <h1 class="food-name">{{ food.name }}</h1>
+            <p class="food-description">{{ food.description }}</p>
+            <p class="food-price">₹{{ food.food_price }}</p>
+
+            <div class="cta-section">
+                <button class="order-button" onclick="order('{{food.name}}','{{food.price}}')">Order Now</button>
+                <p class="cta-note">Free delivery for orders above ₹150!</p>
+            </div>
+
+            <div class="ingredients-section">
+                <h2>Ingredients</h2>
+                <ul class="ingredients-list">
+                    <li>Fresh mozzarella cheese</li>
+                    <li>Tomatoes</li>
+                    <li>Fresh basil</li>
+                    <li>Olive oil</li>
+                    <li>Salt</li>
+                </ul>
+            </div>
+
+            <div class="rating-section">
+                <h2>Customer Reviews</h2>
+                <div class="rating">
+                    <span class="stars">★★★★☆</span>
+                    <span class="rating-value">4.2/5</span>
+                </div>
+                <div class="reviews">
+                    <div class="review">
+                        <p class="review-text">"This pizza is amazing! The flavors are so fresh and delicious."</p>
+                        <p class="review-author">- John D.</p>
+                    </div>
+                    <div class="review">
+                        <p class="review-text">"The best Margherita pizza I've ever had. Highly recommend!"</p>
+                        <p class="review-author">- Sarah L.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="related-food-section">
+                <h2>You Might Also Like</h2>
+                <div class="related-food-list">
+                    <div class="related-food-item">
+                        <img src="pepperoni_pizza.jpg" alt="Pepperoni Pizza">
+                        <p>Pepperoni Pizza</p>
+                    </div>
+                    <div class="related-food-item">
+                        <img src="veggie_pizza.jpg" alt="Veggie Pizza">
+                        <p>Veggie Pizza</p>
+                    </div>
+                    <div class="related-food-item">
+                        <img src="cheese_pizza.jpg" alt="Cheese Pizza">
+                        <p>Cheese Pizza</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function order(fname, fprice) {
+            alert("Thank you for ordering \n" + fname + " \n Price :- " + fprice);
+        }
+    </script>
+</body>
+
+</html>

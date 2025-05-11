@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+   {% load static %}
+   <link rel="stylesheet" href="{% static 'restaurant/dashboard.css' %}">
+
+</head>
+
+<body>
+    <div class="content">
+        <nav class="navbar">
+            <a class="navbar-brand" href="#">Restaurant Dashboard</a>
+            <button class="navbar-toggler" type="button" onclick="toggleNavbar()">
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="navbar-nav" id="navbarNav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'restaurant_orders' %}">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'menu' %}">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'rest_profile' %}">Profile</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <center>
+                <h1 class="restaurant-name">Hello, {{ restaurant.name }}</h1>
+            </center>
+
+            <div class="card">
+                <div class="card-header">Orders</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        {% for order in orders %}
+                        <li class="list-group-item">Order #{{ order.oid }} - {{ order.cus_id.cname }} - {{ order.cus_id.phone_number }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{% url 'restaurant_orders' %}" class="btn btn-primary mt-3">View Orders</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Menu</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        {% for item in menu %}
+                        <li class="list-group-item">{{ item.menu_name }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{% url 'menu' %}" class="btn btn-primary mt-3">Add Menu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer">
+            <p>&copy; 2025 Food Mania. All rights reserved. </p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleNavbar() {
+            const navbarNav = document.getElementById('navbarNav');
+            navbarNav.classList.toggle('active');
+        }
+    </script>
+
+</body>
+
+</html>

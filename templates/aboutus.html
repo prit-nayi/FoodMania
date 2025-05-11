@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Food Mania</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'aboutus.css' %}">
+</head>
+
+<body>
+<div class="wrap-container">
+    <header>
+        <div class="nav-container">
+            <nav>
+                <div class="logo">Food-Mania</div>
+                <ul>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="{% url 'cart_detail' %}">Cart</a></li>
+                    <li><a href="{% url 'login' %}">Profile</a></li>
+                </ul>
+            </nav>
+            <div class="header-content">
+                <h1>Your favorite food, delivered fast!</h1>
+                <p>Order now and enjoy delicious meals at the comfort of your home.</p>
+            </div>
+        </div>
+    </header>
+</div>
+
+    <div class="container">
+        <div class="about-section">
+            <h1>About Us</h1>
+            <p>
+                Welcome to <strong>Food Mania</strong>, where passion for food meets exceptional service.
+                Our journey began in 2024 with a simple mission: to deliver delicious, high-quality meals
+                that bring people together. From our humble beginnings, we have grown into a beloved
+                restaurant known for our innovative dishes and warm hospitality.
+            </p>
+            <p>
+                At Food Mania, we believe that food is more than just sustenance—it's an experience.
+                Our chefs use only the freshest ingredients to create mouthwatering dishes that cater
+                to every palate. Whether you're dining in or ordering online, we strive to make every
+                meal memorable.
+            </p>
+
+            <h2>Our Mission</h2>
+            <p>
+                Our mission is to provide our customers with an unforgettable dining experience.
+                We are committed to using sustainable practices, supporting local farmers, and
+                delivering exceptional service with every order.
+            </p>
+
+            <h2>Our Team</h2>
+            <div class="team-section">
+                <div class="team-member">
+                    <img src="/static/images/profile-pic.jpg" alt="Prit Nayi">
+                    <h3>Prit Nayi</h3>
+                    <p>Lead Developer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Food Mania. All rights reserved. </p>
+    </div>
+</body>
+
+</html>
